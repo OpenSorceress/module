@@ -1,0 +1,23 @@
+<layout version="0.1.0">
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="customer">
+                <name>Financing Widget</name>
+                <path>customer/financingwidget/</path>
+                <label>Financing Widget</label>
+            </action>
+        </reference>
+    </customer_account>
+
+    <customer_financingwidget_index translate="label">
+        <label>Financing Widget</label>
+        <reference name="head">
+            <action method="setTitle"><title>Financing Widget</title></action>
+            <action method="addItem"><type>skin_js</type><name>js/punchoutcatalogs_financingwidget.js</name></action>
+        </reference>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="punchoutcatalogs_financingwidget/customer_financingwidget" name="customer_financingwidget" before="-" template="customer/form/punchoutcatalogs_financingwidget.phtml"/>
+        </reference>
+    </customer_financingwidget_index>
+</layout>

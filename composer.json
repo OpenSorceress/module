@@ -1,0 +1,42 @@
+{
+    "name": "PunchoutCatalogs/FinancingWidget",
+    "type": "magento-module",
+    "version": "dev-feature/PunchoutCatalogs_FinancingWidget",
+    "license":"OSL-3.0",
+    "description":"",
+    "authors":[
+        {
+            "name":"PunchoutCatalogs, Inc.",
+            "email":"sales@punchoutcatalogs.com"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "dev-master",
+        "PunchoutCatalogs/CustomerBalance":"dev-@refs/heads/feature/PunchoutCatalogs_AccountNavigation",
+        "PunchoutCatalogs/GroupControl":"dev-feature/PunchoutCatalogs_GroupControl",
+        "PunchoutCatalogs/TaxExemption":"dev-feature/PunchoutCatalogs_TaxExemption"
+    },
+    "repositories":  [
+        {
+            "type": "vcs",
+            "url": "https://github.com/magento-hackathon/magento-composer-installer.git"
+        },
+        {
+            "type": "vcs",
+            "url": "ssh://git@stash.buyerquest.net:7999/sc/assets.git"
+        }
+    ],
+    "extra": {
+        "magento-root-dir":"../.",
+        "map": [
+            ["app/etc/modules/PunchoutCatalogs_FinancingWidget.xml", "app/etc/modules/PunchoutCatalogs_FinancingWidget.xml"],
+            ["app/code/local/PunchoutCatalogs/FinancingWidget", "app/code/local/PunchoutCatalogs/FinancingWidget"],
+            ["app/etc/modules/PunchoutCatalogs_TaxExemption.xml", "app/etc/modules/PunchoutCatalogs_TaxExemption.xml"],
+            ["app/code/local/PunchoutCatalogs/TaxExemption", "app/code/local/PunchoutCatalogs/TaxExemption"],
+            ["app/etc/modules/PunchoutCatalogs_GroupControl.xml", "app/etc/modules/PunchoutCatalogs_GroupControl.xml"],
+            ["app/code/local/PunchoutCatalogs/GroupControl", "app/code/local/PunchoutCatalogs/GroupControl"],
+            ["app/etc/modules/PunchoutCatalogs_CustomerBalance.xml", "app/etc/modules/PunchoutCatalogs_CustomerBalance.xml"],
+            ["app/code/local/PunchoutCatalogs/CustomerBalance", "app/code/local/PunchoutCatalogs/CustomerBalance"]
+        ]
+    }
+}

@@ -1,0 +1,9 @@
+local.xml
+.idea/*
+atlassian-ide-plugin.xml
+vendor/*
+var/*
+media/*
+shell/createAdminUser.php
+.DS_Store
+*.lock

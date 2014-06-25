@@ -1,0 +1,60 @@
+<?php
+$methods = $this->getMethods();
+$oneMethod = count($methods) <= 1;
+
+// Financing part start>>>
+$financingcreditActiveNative = Mage::getStoreConfig(('payment/financingcredit/active'), Mage::app()->getStore()->getId());
+$financingcreditActive = Mage::helper('punchoutcatalogs_financingwidget')->isEnabledFinancingPayment();
+$financingcreditCode = 'financingcredit';
+$financingcreditCodesCheck = array();
+// <<<Financing part end
+?>
+<?php if (empty($methods)): ?>
+  <dt>
+    <?php echo $this->__('No Payment Methods') ?>
+  </dt>
+<?php else:
+  foreach ($methods as $_method):
+    $_code = $_method->getCode();
+    // Financing part start>>>
+    $financingcreditCodesCheck[] = $_code;
+    // <<<Financing part end
+    ?>
+    <dt>
+      <?php if(!$oneMethod): ?>
+        <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->escapeHtml($_method->getTitle()) ?>" onclick="payment.switchMethod('<?php echo $_code ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
+      <?php else: ?>
+        <span class="no-display"><input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" checked="checked" class="radio" /></span>
+        <?php $oneMethod = $_code; ?>
+      <?php endif; ?>
+      <label for="p_method_<?php echo $_code ?>"><?php echo $this->escapeHtml($this->getMethodTitle($_method)) ?> <?php echo $this->getMethodLabelAfterHtml($_method) ?></label>
+    </dt>
+    <?php if ($html = $this->getPaymentMethodFormHtml($_method)): ?>
+    <dd>
+      <?php echo $html; ?>
+    </dd>
+  <?php endif; ?>
+  <?php endforeach;
+endif;
+?>
+<?php echo $this->getChildChildHtml('additional'); ?>
+
+<?php
+// Financing part start>>>
+if($financingcreditActive && $financingcreditActiveNative && !in_array($financingcreditCode, $financingcreditCodesCheck)):
+  ?>
+  <p><span style="color:red;"><?php echo $this->__('Cart total is outside of the approved financing range') ?></span></p>
+<?php
+endif;
+// <<<Financing part end
+?>
+
+<script type="text/javascript">
+  //<![CDATA[
+  <?php echo $this->getChildChildHtml('scripts'); ?>
+  payment.init();
+  <?php if (is_string($oneMethod)): ?>
+  payment.switchMethod('<?php echo $oneMethod ?>');
+  <?php endif; ?>
+  //]]>
+</script>

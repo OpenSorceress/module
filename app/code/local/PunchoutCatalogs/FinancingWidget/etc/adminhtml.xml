@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <report>
+            <children>
+                <customers>
+                    <children>
+                        <financingwidgets translate="title" module="punchoutcatalogs_financingwidget">
+                            <title>Financing Requests</title>
+                            <action>adminhtml/report_customer/financingwidgets</action>
+                        </financingwidgets>
+                    </children>
+                </customers>
+            </children>
+        </report>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <report>
+                        <children>
+                            <customers>
+                                <children>
+                                    <financingwidgets translate="title" mopunchoutcatalogsrquest_financingwidget">
+                                        <title>Financing Requests</title>
+                                        <action>adminhtml/report_customer/financingwidgets</action>
+                                    </financingwidgets>
+                                </children>
+                            </customers>
+                        </children>
+                    </report>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

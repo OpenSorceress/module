@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <PunchoutCatalogs_FinancingWidget>
+            <version>0.0.3</version>
+        </PunchoutCatalogs_FinancingWidget>
+    </modules>
+
+    <global>
+        <template>
+            <email>
+                <financingwidget_email_template module="punchoutcatalogs_financingwidget">
+                    <label>FinancingWidget Email Template</label>
+                    <file>punchoutcatalogs_financingwidget_email.html</file>
+                    <type>html</type>
+                </financingwidget_email_template>
+            </email>
+        </template>
+
+        <blocks>
+            <punchoutcatalogs_financingwidget>
+                <class>PunchoutCatalogs_FinancingWidget_Block</class>
+            </punchoutcatalogs_financingwidget>
+            <checkout>
+                <rewrite>
+                    <onepage_payment_methods>PunchoutCatalogs_FinancingWidget_Block_Checkout_Onepage_Payment_Methods</onepage_payment_methods>
+                </rewrite>
+            </checkout>
+            <adminhtml>
+                <rewrite>
+                    <customer_edit_tabs>PunchoutCatalogs_FinancingWidget_Block_Adminhtml_Customer_Edit_Tabs</customer_edit_tabs>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <helpers>
+            <punchoutcatalogs_financingwidget>
+                <class>PunchoutCatalogs_FinancingWidget_Helper</class>
+            </punchoutcatalogs_financingwidget>
+        </helpers>
+
+        <models>
+            <punchoutcatalogs_financingwidget>
+                <class>PunchoutCatalogs_FinancingWidget_Model</class>
+                <resourceModel>punchoutcatalogs_financingwidget_resource</resourceModel>
+            </punchoutcatalogs_financingwidget>
+
+            <punchoutcatalogs_financingwidget_resource>
+                <class>PunchoutCatalogs_FinancingWidget_Model_Resource</class>
+                <entities>
+                    <punchoutcatalogs_financingwidget>
+                        <table>punchoutcatalogs_financingwidget</table>
+                    </punchoutcatalogs_financingwidget>
+                </entities>
+            </punchoutcatalogs_financingwidget_resource>
+        </models>
+
+        <resources>
+            <punchoutcatalogs_financingwidget_setup>
+                <setup>
+                    <module>PunchoutCatalogs_FinancingWidget</module>
+                    <class>Mage_Customer_Model_Resource_Setup</class>
+                </setup>
+            </punchoutcatalogs_financingwidget_setup>
+        </resources>
+
+        <events>
+            <adminhtml_customer_edit_tabs_beforetohtml>
+                <observers>
+                    <punchoutcatalogs_financingwidget>
+                        <class>punchoutcatalogs_financingwidget/observer</class>
+                        <method>customerTabs</method>
+                    </punchoutcatalogs_financingwidget>
+                </observers>
+            </adminhtml_customer_edit_tabs_beforetohtml>
+        </events>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <!--<PunchoutCatalogs_FinancingWidget before="Mage_Adminhtml">PunchoutCatalogs_FinancingWidget_Adminhtml</PunchoutCatalogs_FinancingWidget>-->
+                        <PunchoutCatalogs_FinancingWidget before="PunchoutCatalogs_CustomerBalance">PunchoutCatalogs_FinancingWidget_Adminhtml</PunchoutCatalogs_FinancingWidget>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <punchoutcatalogs_financingwidget>
+                    <file>enterprise/punchoutcatalogs_financingwidget.xml</file>
+                </punchoutcatalogs_financingwidget>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <frontend>
+        <routers>
+            <punchoutcatalogs_financingwidget>
+                <use>standard</use>
+                <args>
+                    <module>PunchoutCatalogs_FinancingWidget</module>
+                    <frontName>financingwidget</frontName>
+                </args>
+            </punchoutcatalogs_financingwidget>
+
+            <customer>
+                <args>
+                    <modules>
+                        <financingwidget before="Mage_Customer">PunchoutCatalogs_FinancingWidget</financingwidget>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+
+        <layout>
+            <updates>
+                <punchoutcatalogs_financingwidget>
+                    <file>punchoutcatalogs_financingwidget.xml</file>
+                </punchoutcatalogs_financingwidget>
+            </updates>
+        </layout>
+
+    </frontend>
+
+    <default>
+        <payment>
+            <financingcredit>
+                <active>1</active>
+                <model>punchoutcatalogs_financingwidget/method_financingcredit</model>
+                <order_status>pending</order_status>
+                <title>Financing Credit</title>
+                <allowspecific>0</allowspecific>
+                <group>offline</group>
+            </financingcredit>
+        </payment>
+    </default>
+
+</config>

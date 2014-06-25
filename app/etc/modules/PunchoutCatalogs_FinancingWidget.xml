@@ -1,0 +1,16 @@
+<config>
+    <modules>
+        <PunchoutCatalogs_FinancingWidget>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Customer />
+                <PunchoutCatalogs_GroupControl />
+
+                <!-- Needed for Admin routers -->
+                <PunchoutCatalogs_TaxExemption />
+                <PunchoutCatalogs_CustomerBalance />
+            </depends>
+        </PunchoutCatalogs_FinancingWidget>
+    </modules>
+</config>

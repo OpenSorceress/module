@@ -1,0 +1,7 @@
+<layout>
+    <adminhtml_customer_financingwidget>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="punchoutcatalogs_financingwidget/adminhtml_customer_edit_tab_financingwidget" name="adminhtml.customer.edit.tab.financingwidget"/>
+        </block>
+    </adminhtml_customer_financingwidget>
+</layout>
